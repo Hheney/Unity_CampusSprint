@@ -151,7 +151,7 @@ public class SoundManager : MonoBehaviour
     public void f_AutoPlayBGM()
     {
         SoundName soundName; //딕셔너리에서 일치하는 매핑된 사운드 지역변수 선언
-        string sSceneName = GameManager.Instance.f_GetSceneName(); //씬 이름 변수에 활성화된 씬 이름 저장
+        string sSceneName = FlowManager.Instance.f_GetSceneName(); //FlowManager를 통해 현재 씬 이름을 가져옴
 
         if (BGMDict.TryGetValue(sSceneName, out soundName))
         {

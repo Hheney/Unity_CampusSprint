@@ -4,14 +4,14 @@
  */
 using UnityEngine;
 
-public abstract class BaseObstacleEffect : MonoBehaviour
+public abstract class BaseObstacleEffect : MonoBehaviour 
 {
     /// <summary> 플레이어와 충돌 시 발동되는 공통 처리 </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player")) //플레이어와 충돌했을 때만 실행
         {
-            f_ApplyEffect(collision.gameObject);
+            f_ApplyEffect(collision.gameObject); //각 자식 클래스에서 구현한 효과 처리 메소드 호출
             Destroy(gameObject); //한 번 사용 후 파괴
         }
     }

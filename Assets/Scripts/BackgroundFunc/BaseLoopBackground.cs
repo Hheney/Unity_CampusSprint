@@ -24,7 +24,7 @@ public abstract class BaseLoopBackground : MonoBehaviour
 
         if (spriteRenderer != null)
         {
-            fScrollWidth = spriteRenderer.bounds.size.x;
+            fScrollWidth = spriteRenderer.bounds.size.x; //SpriteRenderer의 bounds를 사용하여 가로 길이를 계산
         }
     }
 
@@ -33,11 +33,10 @@ public abstract class BaseLoopBackground : MonoBehaviour
         if (gReferenceTarget == null) return;   //기준점이 null일 경우 Early Return
                                                 //하위 로직이 구현안되도록 하기 위함
 
-        f_CheckAndLoop();
+        f_CheckAndLoop(); //반복 여부 판단 및 재설정 메소드 호출
     }
 
-    /// <summary> 반복 여부 판단 및 재설정 메소드(추상화 메소드, 내용은 하위 클래스에서 정의함) </summary>
-    protected abstract void f_CheckAndLoop();
+    protected abstract void f_CheckAndLoop(); //하위 클래스에서 구현해야 하는 추상 메소드
 
     /// <summary> 외부에서 기준 타겟 설정할 수 있는 메소드 </summary>
     public void f_SetReferenceTarget(Transform target)

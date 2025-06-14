@@ -9,9 +9,9 @@ public class BuffObstacle : BaseObstacleEffect
 {
     [SerializeField] private float fBonusTime = 5.0f; //추가시간 필드
 
-    protected override void f_ApplyEffect(GameObject player)
+    protected override void f_ApplyEffect(GameObject player) //플레이어와 충돌 시 호출되는 메소드
     {
-        Debug.Log("버프 획득! 시간 +" + fBonusTime + "초");
-        GameManager.Instance?.f_AddTime(fBonusTime);
+        Debug.Log("버프 획득! 시간 +" + fBonusTime + "초"); //디버그 로그 출력
+        GameManager.Instance?.f_AddTime(fBonusTime); //GameManager의 f_AddTime 메소드를 호출하여 시간 추가
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7682935396510651469}
   - component: {fileID: -8060413913814008699}
   - component: {fileID: 6318978461957576101}
-  - component: {fileID: 8578758363270343784}
+  - component: {fileID: 808126923036473331}
   m_Layer: 0
   m_Name: health potion
   m_TagString: Untagged
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fBonusTime: 5
---- !u!114 &8578758363270343784
+--- !u!114 &808126923036473331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,4 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b0d9b6b144ba04db3180cdb7c2b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fMoveSpeed: 2
+  fSpeedMultiplier: 1.2
+  fDestroyX: -15

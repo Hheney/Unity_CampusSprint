@@ -6,20 +6,20 @@ using UnityEngine;
 
 public class DebuffObstacle : BaseObstacleEffect
 {
-    [SerializeField] private bool isTriggerMiniGame = true;
-    [SerializeField] private float fPenaltyTime = 30.0f;
+    [SerializeField] private bool isTriggerMiniGame = true; //미니게임 진입 여부
+    [SerializeField] private float fPenaltyTime = 30.0f;    //감소할 시간(초 단위)
 
-    protected override void f_ApplyEffect(GameObject player)
+    protected override void f_ApplyEffect(GameObject player) //플레이어와 충돌 시 호출되는 메소드
     {
-        if (isTriggerMiniGame)
+        if (isTriggerMiniGame) //미니게임 진입 여부(Inspector에서 설정 가능)
         {
             Debug.Log("디버프: 미니게임 진입");
-            GameManager.Instance?.f_OnHitObstacle();
+            GameManager.Instance?.f_OnHitObstacle(); //GameManager의 f_OnHitObstacle 메소드를 호출하여 미니게임 진입
         }
         else
         {
-            Debug.Log("디버프: 시간 -" + fPenaltyTime + "초");
-            GameManager.Instance?.f_AddTime(-fPenaltyTime);
+            Debug.Log("디버프: 시간 -" + fPenaltyTime + "초"); //디버그 로그 출력
+            GameManager.Instance?.f_AddTime(-fPenaltyTime); //GameManager의 f_AddTime 메소드를 호출하여 시간 감소
         }
     }
 }
