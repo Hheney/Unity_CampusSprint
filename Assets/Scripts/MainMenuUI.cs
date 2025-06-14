@@ -13,7 +13,7 @@ public class MainMenuUI : MonoBehaviour
     [Header("게임 씬 지정 (Enum 기반)")]
     [SerializeField] private SceneName gameScene = SceneName.GameScene;
 
-    private void Start()
+    void Start()
     {
         // 버튼 클릭 이벤트 등록
         if (startButton != null)

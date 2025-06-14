@@ -4,28 +4,29 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+//게임 상태 정의 Enum
+public enum GameState
+{
+    Ready,      //게임 대기 상태 (시작 전)
+    Running,    //게임 진행 중
+    MiniGame,   //미니게임 중단 상태
+    Paused,     //일시 정지 (옵션 등)
+    GameOver,   //실패 상태
+    GameClear   //성공 도착
+}
+
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
-
-    //게임 상태 정의 Enum
-    public enum GameState
-    {
-        Ready,      //게임 대기 상태 (시작 전)
-        Running,    //게임 진행 중
-        MiniGame,   //미니게임 중단 상태
-        Paused,     //일시 정지 (옵션 등)
-        GameOver,   //실패 상태
-        GameClear   //성공 도착
-    }
-
-    [Header("Game Timer Settings")]
-    [SerializeField] private float fLimitTime = 300f; //제한시간 (5분 = 300초)
-    private float fCurrentTime = 0f;                  //현재 남은 시간
-
+    public static GameManager Instance { get; private set; } //싱글톤 패턴 구현
     public GameState CurrentState { get; private set; } = GameState.Ready;
 
+    [SerializeField] private float fLimitTime = 300f; //제한시간 (5분 = 300초)
+    
+    private float fCurrentTime = 0f;                  //현재 남은 시간
     private bool isTimerRunning = false;
+
+    public float CurrentTime { get { return fCurrentTime; } } //남은 시간을 반환하는 read-only 프로퍼티
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         if (CurrentState == GameState.Running && isTimerRunning)
         {
@@ -129,5 +130,11 @@ public class GameManager : MonoBehaviour
     public string f_GetSceneName()
     {
         return SceneManager.GetActiveScene().name;
+    }
+
+    public void f_AddTime(float value)
+    {
+        fCurrentTime += value;
+        fCurrentTime = Mathf.Clamp(fCurrentTime, 0f, fLimitTime);
     }
 }
