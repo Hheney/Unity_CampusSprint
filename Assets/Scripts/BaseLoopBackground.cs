@@ -1,14 +1,16 @@
 /*
- * 배경 반복 오브젝트의 공통 로직을 정의한 추상 클래스
- * scrollWidth 자동 계산
- * referenceTarget 연결
- * 반복 조건은 하위 클래스에서 오버라이드(덮어쓰기)
+ * [배경 반복 오브젝트의 공통 로직을 정의한 추상 클래스]
+ * 기능 : fScrollWidth 자동 계산 gReferenceTarget 연결
+ * 반복 재생 조건은 하위 클래스에서 오버라이드(덮어쓰기)
+ * 추상 클래스를 사용해서 반복되는 부분은 통합하여 유지보수성을 높임
 */
 
 using UnityEngine;
 
 public abstract class BaseLoopBackground : MonoBehaviour
 {
+    //정의된 내용은 모두 하위 클래스에서 상속예정이므로 protected 접근지정
+
     [SerializeField] protected Transform gReferenceTarget; //기준이 되는 타겟(플레이어)의 Transform 컴포넌트 필드
 
     protected SpriteRenderer spriteRenderer = null;

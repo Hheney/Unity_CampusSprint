@@ -4,6 +4,7 @@
  * 구조상 플레이어 자체는 스페이스바로 점프만 가능하며, 애니메이션과 착지 판정을 하는 기능을 수행함
  * - 이전 프로젝트인 ClimbCloud에서 개발한 스크립트를 재활용하여 작성함
  */
+using System.Net.Sockets;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D m_rigidPlayer = null;   //Rigidbody2D 참조 필드
     private Animator m_animatorPlayer = null;   //Animator 참조 필드
 
-    private bool isGround = false;                      //바닥 착지 여부 Bool 필드
+    private bool isGround = false;      //바닥 착지 여부 Bool 필드
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,9 +34,27 @@ public class PlayerController : MonoBehaviour
 
     void f_CallBackgroundMove()
     {
+        /*
+         * 프로젝트 ClimbCloud "f_PlayerMoveAxisX()"의 GetKeyDown 방식이 아닌 GetAxisRaw를 사용하여 로직 단축
+         * GetAxis / GetAxisRaw : GetAxis는 보간기법이 사용되어 리턴값이 지속적으로 발생함, GetAxisRaw는 -1, 0, 1의 상태를 바로 반환함
+         * 따라서 키값을 명확하고 빠르게 얻을 수 있도록 GetAxisRaw를 사용함
+         */
         float fDirInput = Input.GetAxisRaw("Horizontal");
+        BackgroundController.Instance?.f_MoveByInput(fDirInput); //BackgroundController가 null이 아닐경우 f_MoveByInput 실행
 
-        BackgroundController.Instance?.f_MoveByInput(fDirInput);
+        if(fDirInput != 0) //-1, 1값이면 이동, 0이면 멈춤이므로 0이 아닌경우 bool값 변경
+        {
+            Vector3 vLocalScale = transform.localScale;
+            vLocalScale.x = Mathf.Sign(fDirInput); //fDirInput 값이 -1일 경우 플레이어방향 왼쪽 전환
+                                                   //fDirInput 값이 1일 경우 플레이어방향 오른쪽 전환
+            transform.localScale = vLocalScale;
+
+            m_animatorPlayer.SetBool("isRun", true);
+        }
+        else
+        {
+            m_animatorPlayer.SetBool("isRun", false);
+        }
     }
 
     /// <summary> 점프 및 점프 애니메이션 제어 메소드 </summary>

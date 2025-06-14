@@ -11,8 +11,8 @@ public class BackgroundController : MonoBehaviour
     [SerializeField] private float baseMoveSpeed = 2f;    // 기준 이동 속도 (가장 앞 레이어 기준)
     [SerializeField] private float parallaxScale = 0.5f;  // 레이어 간 차등 비율
 
-    private Transform[] backgroundLayers;
-    private float[] layerSpeedRatio;
+    private Transform[] backgroundLayers = null;
+    private float[] layerSpeedRatio = null;
 
     private void Awake()
     {
