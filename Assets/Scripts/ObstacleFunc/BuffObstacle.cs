@@ -13,5 +13,6 @@ public class BuffObstacle : BaseObstacleEffect
     {
         Debug.Log("버프 획득! 시간 +" + fBonusTime + "초"); //디버그 로그 출력
         GameManager.Instance?.f_AddTime(fBonusTime); //GameManager의 f_AddTime 메소드를 호출하여 시간 추가
+        TimerUIManager.Instance?.f_PlayTimerEffect(Color.yellow); //타이머 UI 효과 재생 (노란색)
     }
 }

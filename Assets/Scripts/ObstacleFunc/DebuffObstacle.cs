@@ -19,7 +19,7 @@ public class DebuffObstacle : BaseObstacleEffect
         else
         {
             Debug.Log("디버프: 시간 -" + fPenaltyTime + "초"); //디버그 로그 출력
-            GameManager.Instance?.f_AddTime(-fPenaltyTime); //GameManager의 f_AddTime 메소드를 호출하여 시간 감소
+            GameManager.Instance?.f_SubtractTime(fPenaltyTime); //GameManager의 f_SubtractTime 메소드를 호출하여 시간 감소
         }
     }
 }

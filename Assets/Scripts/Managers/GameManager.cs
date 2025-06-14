@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour //게임의 전체 흐름을 제어하는 GameManag
         {
             Debug.Log("미니게임 실패 - 페널티 적용");
             fCurrentTime -= 10f; // 예: 10초 페널티
+            TimerUIManager.Instance?.f_PlayTimerEffect(Color.red); //타이머 UI 효과 재생 (빨간색)
         }
 
         CurrentState = GameState.Running; //게임 상태를 Running으로 변경
@@ -114,10 +115,17 @@ public class GameManager : MonoBehaviour //게임의 전체 흐름을 제어하는 GameManag
         //TODO: ResultUIManager.Instance.ShowGameOverUI();
     }
 
-    /// <summary> 제한시간에 변수값을 추가하는 메소드 </summary>
+    /// <summary> 제한시간에 변수값을 증가시키는 메소드 </summary>
     public void f_AddTime(float value) 
     {
         fCurrentTime += value; //현재 시간에 추가값을 더함
         fCurrentTime = Mathf.Clamp(fCurrentTime, 0f, fLimitTime); //최대 제한시간을 넘지 않도록 클램프 메소드를 적용
+    }
+
+    /// <summary> 제한시간에서 변수값을 감소시키는 메소드 </summary>
+    public void f_SubtractTime(float value)
+    {
+        fCurrentTime = Mathf.Clamp(fCurrentTime - value, 0f, fLimitTime);
+        TimerUIManager.Instance?.f_PlayTimerEffect(Color.red);
     }
 }
