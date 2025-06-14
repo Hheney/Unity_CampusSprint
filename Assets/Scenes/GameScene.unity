@@ -149,6 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textTimerUI: {fileID: 1616187089}
+  colorDefault: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
+  fBlinkDuration: 0.8
+  iBlinkCount: 2
+  fScaleSize: 1.2
+  fScaleDuration: 0.2
 --- !u!4 &80796144
 Transform:
   m_ObjectHideFlags: 0
@@ -210,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gReferenceTarget: {fileID: 1809674016}
+  isMainCounter: 0
 --- !u!212 &149558696
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -541,6 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gReferenceTarget: {fileID: 1809674016}
+  isMainCounter: 0
 --- !u!1001 &327811221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -842,6 +849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gReferenceTarget: {fileID: 1809674016}
+  isMainCounter: 1
 --- !u!212 &525455754
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1082,6 +1090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gReferenceTarget: {fileID: 1809674016}
+  isMainCounter: 0
 --- !u!1 &676174221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gReferenceTarget: {fileID: 1809674016}
+  isMainCounter: 0
 --- !u!212 &801643376
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1390,6 +1400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gReferenceTarget: {fileID: 1809674016}
+  isMainCounter: 0
 --- !u!1 &973965320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,6 +1447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gReferenceTarget: {fileID: 1809674016}
+  isMainCounter: 0
 --- !u!212 &973965323
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1491,6 +1503,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1065345339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1065345341}
+  - component: {fileID: 1065345340}
+  m_Layer: 0
+  m_Name: ClearCounterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1065345340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065345339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046c4ccfb456d634190a47d7c50af2d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1065345341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065345339}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1278, y: 589.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1436148953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,6 +2472,55 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1804501571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1804501573}
+  - component: {fileID: 1804501572}
+  m_Layer: 0
+  m_Name: ClearZoneGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1804501572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804501571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9551f3d3bb71fab4891b8f5669409888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nRequiredLoopCount: 10
+  fSpawnOffsetX: 15
+  fSpawnPosY: -7.8
+  gClearZonePrefab: {fileID: 1099923654973446273, guid: 134c3f85356a7604daf5025db901ff01, type: 3}
+  gPlayer: {fileID: 1809674016}
+--- !u!4 &1804501573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804501571}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1278, y: 589.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1809674014 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4105362945620786469, guid: ebea5f8b8163f9a4ab9d9a1b45444e28, type: 3}
@@ -2594,6 +2699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gReferenceTarget: {fileID: 1809674016}
+  isMainCounter: 0
 --- !u!212 &1890430863
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2750,6 +2856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gReferenceTarget: {fileID: 1809674016}
+  isMainCounter: 0
 --- !u!1 &1986910131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,6 +2958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gReferenceTarget: {fileID: 1809674016}
+  isMainCounter: 1
 --- !u!1 &2109842764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2905,7 +3013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ef9e781b2a85948973920b4575f101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMoveSpeed: 7
+  baseMoveSpeed: 20
   parallaxScale: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -2922,3 +3030,5 @@ SceneRoots:
   - {fileID: 80796144}
   - {fileID: 1820543685}
   - {fileID: 367146908}
+  - {fileID: 1804501573}
+  - {fileID: 1065345341}
