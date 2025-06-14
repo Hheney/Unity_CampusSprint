@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 {
     //Unity 기본 접근 지정자가 private이지만 이 프로젝트에서는 가독성 및 명시를 위해 private 접근 지정자를 붙임
 
-    [SerializeField] private float fJumpForce = 7f; //플레이어의 점프 힘 필드
+    [SerializeField] private float fJumpForce = 10.0f; //플레이어의 점프 힘 필드
 
     private Rigidbody2D m_rigidPlayer = null;   //Rigidbody2D 참조 필드
     private Animator m_animatorPlayer = null;   //Animator 참조 필드
