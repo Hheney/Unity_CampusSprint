@@ -35,12 +35,13 @@ using UnityEngine;
 public enum SoundName
 {
     //배경음악
-    BGM_GameScene,   //배경음악
+    BGM_GameScene,   //게임 씬 배경음악
+    BGM_MainMenu,    //메인 메뉴 배경음악
 
     //효과음
-    SFX_PopSound,    //밤송이 발사 효과음
-    SFX_Crash        //밤송이 충돌 효과음
-
+    SFX_Jump,        //점프 효과음
+    SFX_Clear,       //게임 클리어 효과음
+    SFX_POP          //팝업 효과음
 }
 //[System.Serializable] : C#의 속성(attribute) / 클래스, 구조체, 필드에 적용가능 / 직렬화를 위해 추가함, 해당 구문을 추가함으로서 Inspector에 표출됨
 //Inspector에서 쉽게 관리 하기위해 통합 AudioUnit 클래스 생성
@@ -92,13 +93,8 @@ public class SoundManager : MonoBehaviour
     private Dictionary<string, SoundName> BGMDict = new Dictionary<string, SoundName>()
     {
         //씬 네임(Key)은 String, 사운드 명칭(Value)은 열거형으로 작성되어 int형이므로 딕셔너리를 사용해 1:1 매핑함
-        {"GameScene", SoundName.BGM_GameScene }
-        
-        /*{"MainMenuScene", SoundName.BGM_MainMenu},
-        {"FirstStage", SoundName.BGM_Stage1},
-        {"GameScene", SoundName.BGM_Stage2 },
-        {"ThirdStage", SoundName.BGM_Stage3 },
-        {"ClearScene", SoundName.BGM_MainMenu}*/      //클리어씬 BGM이 누락되어 임시로 MainMenu BGM 매핑
+        {"GameScene", SoundName.BGM_GameScene },
+        {"MainMenuScene", SoundName.BGM_MainMenu }
     };
 
     private void Awake()
@@ -151,7 +147,7 @@ public class SoundManager : MonoBehaviour
     public void f_AutoPlayBGM()
     {
         SoundName soundName; //딕셔너리에서 일치하는 매핑된 사운드 지역변수 선언
-        string sSceneName = GameManager.Instance.f_GetSceneName(); //씬 이름 변수에 활성화된 씬 이름 저장
+        string sSceneName = FlowManager.Instance.f_GetSceneName(); //FlowManager를 통해 현재 씬 이름을 가져옴
 
         if (BGMDict.TryGetValue(sSceneName, out soundName))
         {

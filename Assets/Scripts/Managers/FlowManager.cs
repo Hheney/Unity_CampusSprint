@@ -1,13 +1,11 @@
 /*
- * FlowManager (플로우 매니저)
- * ---------------------------------------------------------------
+ * [FlowManager(플로우 매니저)]
  * 게임의 씬 전환 및 전체 흐름을 제어하는 싱글톤 매니저 클래스
  * - 씬 전환(Scene 전환)
  * - 현재 씬 이름 조회
- * - 향후 미니게임 흐름, 제한 시간, 게임오버 상태 등을 제어할 확장성을 고려한 구조
+ * - 미니게임 흐름, 제한 시간, 게임오버 상태 등을 제어할 확장성을 고려한 구조
  *
  * 기존 GameManager의 기능을 분리/확장한 클래스
- * ---------------------------------------------------------------
  */
 
 using UnityEngine;
@@ -16,17 +14,17 @@ using UnityEngine.SceneManagement;
 /// <summary> 프로젝트 내에서 사용할 씬 이름 열거형(Enum) </summary>
 public enum SceneName
 {
-    TitleScene,
-    //FirstStage,
-    GameScene
-    //ThirdStage,
-    //ClearScene
+    MainMenuScene,  //메인 메뉴 씬
+    GameScene       //게임 씬
 }
 
 /// <summary> 게임의 흐름을 제어하는 FlowManager 클래스 </summary>
 public class FlowManager : MonoBehaviour
 {
     private static FlowManager _instance = null;
+
+    //프로퍼티로 게임 재시작 모드 여부를 외부에서 간접 접근
+    public bool IsRetryMode { get; private set; } = false; //게임 재시작 모드 여부 (기본값: false)
 
     public static FlowManager Instance
     {
@@ -60,6 +58,12 @@ public class FlowManager : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
+    /// <summary> 게임 재시작 모드 설정 메소드 </summary>
+    public void f_SetRetryMode(bool isRetry)
+    {
+        IsRetryMode = isRetry; //게임 재시작 모드 설정
+    }
+
     /// <summary> 지정한 씬으로 전환하는 메소드 </summary>
     public void f_OpenScene(SceneName sceneName)
     {
@@ -78,7 +82,7 @@ public class FlowManager : MonoBehaviour
         else
         {
             Debug.LogWarning($"씬 {sceneName}이 SceneName Enum에 존재하지 않습니다.");
-            return SceneName.TitleScene; //예외 상황 발생 시 기본 타이틀 씬 반환
+            return SceneName.MainMenuScene; //예외 상황 발생 시 기본 씬 반환
         }
     }
 
