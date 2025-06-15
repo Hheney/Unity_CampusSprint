@@ -54,8 +54,7 @@ public class RankUI : MonoBehaviour
         gRankPanel.SetActive(true); //랭킹 패널을 활성화
         f_RefreshRankUI(); //랭킹 UI를 새로 고침하여 최신 랭킹을 표시
 
-        //TODO : 열기 사운드
-        //SoundManager.Instance?.f_PlaySFX(SoundName.OpenPanel);
+        SoundManager.Instance?.f_PlaySFX(SoundName.SFX_POP, 1.0f); //팝업 효과음 재생
     }
 
     /// <summary> 랭킹 패널을 닫음 </summary>
@@ -63,7 +62,6 @@ public class RankUI : MonoBehaviour
     {
         gRankPanel.SetActive(false); //랭킹 패널을 비활성화
 
-        //TODO : 닫기 사운드
-        //SoundManager.Instance?.f_PlaySFX(SoundName.ClosePanel);
+        SoundManager.Instance?.f_PlaySFX(SoundName.SFX_POP, 1.0f); //팝업 효과음 재생
     }
 }

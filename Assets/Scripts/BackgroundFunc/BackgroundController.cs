@@ -24,19 +24,21 @@ public class BackgroundController : MonoBehaviour
         backgroundLayers = new Transform[nLayerCount];  //배경 레이어들을 저장할 배열 초기화
         layerSpeedRatio = new float[nLayerCount];       //각 레이어의 속도 비율을 저장할 배열 초기화
 
-        float maxZ = 0.0f; //가장 멀리 있는 레이어의 Z값을 저장할 변수
+        float fMaxZValue = 0.0f; //가장 멀리 있는 레이어의 Z값을 저장할 변수
 
+        //모든 자식 오브젝트를 순회하여 레이어와 Z값을 초기화
         for (int i = 0; i < nLayerCount; i++)
         {
-            backgroundLayers[i] = transform.GetChild(i);                //자식 오브젝트를 배열에 저장
-            float zDist = Mathf.Abs(backgroundLayers[i].position.z);    //Z값의 절대값을 계산하여 저장
-            if (zDist > maxZ) maxZ = zDist;                             //가장 멀리 있는 레이어의 Z값을 갱신
+            backgroundLayers[i] = transform.GetChild(i);                      //자식 오브젝트를 배열에 저장
+            float fZDistValue = Mathf.Abs(backgroundLayers[i].position.z);    //Z값의 절대값을 계산하여 저장
+            if (fZDistValue > fMaxZValue) fMaxZValue = fZDistValue;           //가장 멀리 있는 레이어의 Z값을 갱신
         }
 
+        //각 레이어의 속도 비율을 계산하여 초기화
         for (int i = 0; i < nLayerCount; i++)
         {
-            float zDist = Mathf.Abs(backgroundLayers[i].position.z);   //현재 레이어의 Z값 절대값 계산
-            layerSpeedRatio[i] = ((maxZ - zDist) / maxZ) * parallaxScale + (1f - parallaxScale); //속도 비율 계산(가장 멀리 있는 레이어가 가장 느리게 이동)
+            float fZDistValue = Mathf.Abs(backgroundLayers[i].position.z);   //현재 레이어의 Z값 절대값 계산
+            layerSpeedRatio[i] = ((fMaxZValue - fZDistValue) / fMaxZValue) * parallaxScale + (1.0f - parallaxScale); //속도 비율 계산(가장 멀리 있는 레이어가 가장 느리게 이동)
         }
     }
 

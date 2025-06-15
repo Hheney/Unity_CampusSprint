@@ -47,8 +47,9 @@ public class TimerUIManager : MonoBehaviour
 
         float fRemainTime = GameManager.Instance.CurrentTime; //GameManager에서 현재 남은 시간 가져오기
 
-        int nMinutes = Mathf.FloorToInt(fRemainTime / 60f); //남은 시간을 분 단위로 변환
-        int nSeconds = Mathf.FloorToInt(fRemainTime % 60f); //남은 시간을 초 단위로 변환
+        //FloorToInt : 실수를 정수로 내림하여 변환하는 메소드(fRemainTime가 실수형이므로 전환 필요)
+        int nMinutes = Mathf.FloorToInt(fRemainTime / 60.0f); //남은 시간을 분 단위로 변환
+        int nSeconds = Mathf.FloorToInt(fRemainTime % 60.0f); //남은 시간을 초 단위로 변환
 
         textTimerUI.text = $"남은 시간: {nMinutes:00}:{nSeconds:00}"; //남은 시간을 "분:초" 형식으로 출력 $string text 형식 지정자 사용
     }
@@ -67,8 +68,8 @@ public class TimerUIManager : MonoBehaviour
             float fBlinkTime = 0.0f; //깜박임 시간 초기화
             while (fBlinkTime < fBlinkDuration / iBlinkCount)
             {
-                float fBlinkSpeed = Mathf.PingPong(fBlinkTime * 4f, 1f); //깜박임 효과 빠르게
-                textTimerUI.color = Color.Lerp(colorDefault, colorEffect, fBlinkSpeed);
+                float fBlinkSpeed = Mathf.PingPong(fBlinkTime * 4.0f, 1.0f); //깜박임 효과 빠르게
+                textTimerUI.color = Color.Lerp(colorDefault, colorEffect, fBlinkSpeed); //기본 색상과 효과 색상을 보간하여 깜박임 효과 적용
                 fBlinkTime += Time.deltaTime;
                 yield return null;
             }
@@ -79,9 +80,9 @@ public class TimerUIManager : MonoBehaviour
         float fScaleAnimTime = 0.0f; //스케일 애니메이션 시간 초기화
         while (fScaleAnimTime < fScaleDuration)
         {
-            float fScaleTime = fScaleAnimTime / fScaleDuration;             //애니메이션 시간 비율 계산
-            float scale = Mathf.Lerp(1f, fScaleSize, fScaleTime);           //스케일 비율 계산
-            textTimerUI.rectTransform.localScale = vOriginalScale * scale;  //텍스트 스케일 적용
+            float fScaleTime = fScaleAnimTime / fScaleDuration;                 //애니메이션 시간 비율 계산
+            float scale = Mathf.Lerp(1.0f, fScaleSize, fScaleTime);             //스케일 비율 계산
+            textTimerUI.rectTransform.localScale = vOriginalScale * scale;      //텍스트 스케일 적용
             fScaleAnimTime += Time.deltaTime; //프레임당 시간 증가
             yield return null; 
         }

@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddda5d7b6d37198409401d84d6769c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 1738071818}
-  exitButton: {fileID: 648840951}
+  BtnStart: {fileID: 1738071818}
+  BtnExit: {fileID: 648840951}
   gameScene: 1
 --- !u!4 &7055227
 Transform:

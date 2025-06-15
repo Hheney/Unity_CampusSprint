@@ -63,7 +63,7 @@ public class ObstacleGenerator : MonoBehaviour
             gSelectObstacle = gListDebuffPrefab[nSelectIndexNum];           //선택된 디버프 프리팹
         }
 
-        Vector3 vSpawnPos = new Vector3(gPlayer.position.x + fSpawnOffsetX, fSpawnPosY, 0f); //장애물 생성 위치 계산 (플레이어 기준 오른쪽에 생성)
+        Vector3 vSpawnPos = new Vector3(gPlayer.position.x + fSpawnOffsetX, fSpawnPosY, 0.0f); //장애물 생성 위치 계산 (플레이어 기준 오른쪽에 생성)
         Instantiate(gSelectObstacle, vSpawnPos, Quaternion.identity); //선택된 장애물 프리팹을 생성 위치에 생성
     }
 }

@@ -8,7 +8,7 @@ public class QuizData : MonoBehaviour
 
     public QuizData(string sQuestion, bool isAnswer)
     {
-        this.sQuestion = sQuestion;
-        this.isAnswer = isAnswer;
+        this.sQuestion = sQuestion; //문제 텍스트 초기화
+        this.isAnswer = isAnswer;   //정답 여부 초기화
     }
 }

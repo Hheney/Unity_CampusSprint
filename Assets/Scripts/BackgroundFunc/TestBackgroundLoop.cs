@@ -24,11 +24,11 @@ public class BackgroundLoop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 기준 위치 기준으로 배경이 왼쪽으로 충분히 벗어나면 오른쪽으로 재배치
+        //기준 위치 기준으로 배경이 왼쪽으로 충분히 벗어나면 오른쪽으로 재배치
         if (transform.position.x + fScrollWidth < g_ReferenceTarget.position.x)
         {
-            // 화면 왼쪽을 벗어났다면 오른쪽으로 2배 이동시킴
-            transform.position += Vector3.right * fScrollWidth * 2f;
+            //화면 왼쪽을 벗어났다면 오른쪽으로 2배 이동시킴
+            transform.position += Vector3.right * fScrollWidth * 2.0f;
         }
     }
 }

@@ -1,8 +1,8 @@
+/*
+ * 반복 배경 카운트를 관리하는 ClearCounterManager 클래스
+ */
 using UnityEngine;
 
-/// <summary>
-///  반복 배경 카운트를 관리하는 ClearCounterManager 클래스
-/// </summary>
 public class ClearCounterManager : MonoBehaviour
 {
     public static ClearCounterManager Instance { get; private set; }
@@ -13,7 +13,7 @@ public class ClearCounterManager : MonoBehaviour
 
     private void Awake()
     {
-        // 싱글톤 인스턴스 할당 및 중복 제거
+        //싱글톤 인스턴스 할당 및 중복 제거
         if (Instance == null)
         {
             Instance = this;
@@ -24,7 +24,7 @@ public class ClearCounterManager : MonoBehaviour
         }
     }
 
-    public void f_AddCount()
+    public void f_AddCount() //반복 배경 카운트를 증가시키는 메소드
     {
         nLoopCount++;
         Debug.Log($"반복 배경 카운트: {nLoopCount}");

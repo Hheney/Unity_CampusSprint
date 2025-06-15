@@ -72,7 +72,8 @@ public class PlayerController : MonoBehaviour
         {
             m_rigidPlayer.AddForce(Vector2.up * fJumpForce, ForceMode2D.Impulse); //플레이어에게 위쪽으로 힘을 가함
             m_animatorPlayer.SetBool("isJump", true); //isJump 파라미터를 true로 설정하여 점프 애니메이션 실행
-            //SoundManager.Instance?.f_PlaySFX(SoundName.SFX_Jump, 0.1f);
+            
+            SoundManager.Instance?.f_PlaySFX(SoundName.SFX_Jump, 1.0f); //점프 효과음 재생
         }
     }
 

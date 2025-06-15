@@ -30,17 +30,32 @@ public class MiniGameUI : MonoBehaviour
         gMiniGamePanel.SetActive(false); //미니게임 패널은 초기에는 비활성화
     }
 
+
     private void Start()
     {
-        btnTrue.onClick.AddListener(() => f_CheckAnswer(true));
-        btnFalse.onClick.AddListener(() => f_CheckAnswer(false));
 
-        //문제 추가
+        btnTrue.onClick.AddListener(() => f_CheckAnswer(true));     //O 버튼 클릭 시 정답 확인 메소드 호출
+        btnFalse.onClick.AddListener(() => f_CheckAnswer(false));   //X 버튼 클릭 시 오답 확인 메소드 호출
+
+        //문제 추가(현재 방식은 직접적으로 추가하고 있으나, RankManger의 작동방식처럼 JSON 파일 방식으로 확장 가능할 것으로 생각됨)
         listQuestions.Add(new QuizData("지구는 태양을 돈다", true));
         listQuestions.Add(new QuizData("1km는 100m이다", false));
         listQuestions.Add(new QuizData("코끼리는 포유류이다", true));
         listQuestions.Add(new QuizData("물의 화학식은 CO2이다", false));
     }
+
+    /*
+    /// <summary> O 버튼 클릭 시 호출되는 메소드 </summary>
+    private void f_OnClickTrue()
+    {
+        f_CheckAnswer(true);  //정답
+    }
+
+    /// <summary> X 버튼 클릭 시 호출되는 메소드 </summary>
+    private void f_OnClickFalse()
+    {
+        f_CheckAnswer(false); //오답
+    }*/
 
     public void f_OpenMiniGame() //미니게임 시작 메소드
     {

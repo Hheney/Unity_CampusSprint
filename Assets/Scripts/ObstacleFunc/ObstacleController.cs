@@ -12,8 +12,8 @@ public class ObstacleController : MonoBehaviour
     
 
     private float fMoveSpeed = 0.0f; //장애물을 이동시킬 속도
-    float fDirInput = 0.0f;  // -1, 0, 1 중 하나 (플레이어 입력값)
-    float fDirection = 0.0f;
+    float fDirInput = 0.0f;  //-1, 0, 1 중 하나 (플레이어 입력값)
+    float fDirection = 0.0f; //-1 또는 1 (플레이어가 왼쪽으로 이동하면 -1, 오른쪽으로 이동하면 1)
 
     void Start()
     {
@@ -34,12 +34,12 @@ public class ObstacleController : MonoBehaviour
         //게임이 진행 중이 아닐 경우 Early return 처리
         if (GameManager.Instance == null || GameManager.Instance.CurrentState != GameState.Running) { return; }
 
-        fDirInput = Input.GetAxisRaw("Horizontal"); // -1, 0, 1 중 하나
+        fDirInput = Input.GetAxisRaw("Horizontal"); //-1, 0, 1 중 하나
 
         //방향 입력이 있을 때만 이동
         if (fDirInput != 0)
         {
-            fDirection = -Mathf.Sign(fDirInput); // -1 또는 1로 설정 (플레이어가 왼쪽으로 이동하면 -1, 오른쪽으로 이동하면 1)
+            fDirection = -Mathf.Sign(fDirInput); //-1 또는 1로 설정 (플레이어가 왼쪽으로 이동하면 -1, 오른쪽으로 이동하면 1)
             Vector3 vMove = Vector3.right * fDirection * fMoveSpeed * Time.deltaTime; //이동할 벡터 계산
             transform.position += vMove; //장애물 이동
         }

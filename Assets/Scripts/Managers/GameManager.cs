@@ -11,7 +11,7 @@ public enum GameState
     Ready,      //게임 대기 상태 (시작 전)
     Running,    //게임 진행 중
     MiniGame,   //미니게임 중단 상태
-    Paused,     //일시 정지 (옵션 등)
+    Paused,     //일시 정지
     GameOver,   //실패 상태
     GameClear   //성공 도착
 }
@@ -47,9 +47,9 @@ public class GameManager : MonoBehaviour //게임의 전체 흐름을 제어하는 GameManag
         if (CurrentState == GameState.Running && isTimerRunning) //게임이 진행 중이고 타이머가 작동 중일 때
         {
             fCurrentTime -= Time.deltaTime;     //프레임당 시간 감소
-            if (fCurrentTime <= 0f)             //시간이 0 이하로 떨어질경우
+            if (fCurrentTime <= 0.0f)           //시간이 0 이하로 떨어질경우
             {
-                fCurrentTime = 0f;      //시간을 0으로 지정
+                fCurrentTime = 0.0f;    //시간을 0으로 지정
                 f_OnGameOver();         //게임 오버 처리
             }
         }
@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour //게임의 전체 흐름을 제어하는 GameManag
         fCurrentTime = fLimitTime; //제한시간으로 초기화
         isTimerRunning = true;     //타이머 작동 시작
         CurrentState = GameState.Running; //게임 상태를 Running으로 변경
+
+        SoundManager.Instance?.f_AutoPlayBGM(); //자동으로 배경음악 재생
 
         Debug.Log("게임 시작됨: 제한시간 = " + fLimitTime); //게임 시작 로그 출력
     }
@@ -87,7 +89,7 @@ public class GameManager : MonoBehaviour //게임의 전체 흐름을 제어하는 GameManag
         else
         {
             Debug.Log("미니게임 실패 - 페널티 적용");
-            fCurrentTime -= 10f; // 예: 10초 페널티
+            fCurrentTime -= 10.0f; //10초 페널티
             TimerUIManager.Instance?.f_PlayTimerEffect(Color.red); //타이머 UI 효과 재생 (빨간색)
         }
 
@@ -106,10 +108,8 @@ public class GameManager : MonoBehaviour //게임의 전체 흐름을 제어하는 GameManag
         SoundManager.Instance?.f_StopAllBGM(); //모든 BGM 정지
         SoundManager.Instance?.f_PlaySFX(SoundName.SFX_Clear, 1.0f); //게임 클리어 효과음 재생
 
-        int nScore = Mathf.FloorToInt(fCurrentTime * 10.0f); //남은 시간에 따라 점수 계산 (예: 1초당 10점)
-        
-        //RankManager.Instance?.f_AddRank("Player", nScore); //랭크 매니저에 계산된 점수 전달
-        GameResultUI.Instance?.f_ShowClearUI(nScore); //게임결과 UI에 계산된 점수 전달
+        int nScore = Mathf.FloorToInt(fCurrentTime * 10.0f);    //남은 시간에 따라 점수 계산 (예: 1초당 10점)
+        GameResultUI.Instance?.f_ShowClearUI(nScore);           //게임결과 UI에 계산된 점수 전달
     }
 
     /// <summary> 제한시간 초과로 게임 오버 처리 </summary>
@@ -119,20 +119,20 @@ public class GameManager : MonoBehaviour //게임의 전체 흐름을 제어하는 GameManag
         CurrentState = GameState.GameOver; //게임 상태를 GameOver로 변경
 
         Debug.Log("시간 초과 - 게임 오버!");
-        //TODO: ResultUIManager.Instance.ShowGameOverUI();
+        //TODO : ResultUIManager.Instance.ShowGameOverUI(); 만들어야함
     }
 
     /// <summary> 제한시간에 변수값을 증가시키는 메소드 </summary>
     public void f_AddTime(float value) 
     {
         fCurrentTime += value; //현재 시간에 추가값을 더함
-        fCurrentTime = Mathf.Clamp(fCurrentTime, 0f, fLimitTime); //최대 제한시간을 넘지 않도록 클램프 메소드를 적용
+        fCurrentTime = Mathf.Clamp(fCurrentTime, 0.0f, fLimitTime); //최대 제한시간을 넘지 않도록 클램프 메소드를 적용
     }
 
     /// <summary> 제한시간에서 변수값을 감소시키는 메소드 </summary>
     public void f_SubtractTime(float value)
     {
-        fCurrentTime = Mathf.Clamp(fCurrentTime - value, 0f, fLimitTime);
+        fCurrentTime = Mathf.Clamp(fCurrentTime - value, 0.0f, fLimitTime);
         TimerUIManager.Instance?.f_PlayTimerEffect(Color.red);
     }
 }

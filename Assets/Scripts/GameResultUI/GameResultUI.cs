@@ -10,9 +10,9 @@ public class GameResultUI : MonoBehaviour
     public static GameResultUI Instance { get; private set; } //싱글톤 인스턴스
 
     [Header("클리어 UI")]
-    [SerializeField] private GameObject gClearPanel = null;     //클리어 패널 오브젝트
-    [SerializeField] private TMP_InputField inputPlayerName;    //플레이어 이름 입력 필드
-    [SerializeField] private TMP_Text txtScore = null;          //점수 텍스트
+    [SerializeField] private GameObject gClearPanel = null;             //클리어 패널 오브젝트
+    [SerializeField] private TMP_InputField inputPlayerName = null;     //플레이어 이름 입력 필드
+    [SerializeField] private TMP_Text txtScore = null;                  //점수 텍스트
 
     private int nLastScore = 0;         //마지막 점수 저장용 변수
     private bool isScoreSaved = false;  //점수 저장 여부 플래그(중복 방지)
@@ -36,10 +36,10 @@ public class GameResultUI : MonoBehaviour
     {
         gClearPanel.SetActive(true);            //클리어 패널 활성화
 
-        nLastScore = nScore; //마지막 점수 저장
+        nLastScore = nScore;                    //마지막 점수 저장
         txtScore.text = $"점수 : {nScore}";     //점수 출력
-        inputPlayerName.text = "Player"; //입력이 없을 경우 기본값 이름인 "Player"설정
-        isScoreSaved = false; //점수 저장 여부 초기화
+        inputPlayerName.text = "Player";        //입력이 없을 경우 기본값 이름인 "Player"설정
+        isScoreSaved = false;                   //점수 저장 여부 초기화
     }
 
     public void f_OnRetryGame()
@@ -70,13 +70,13 @@ public class GameResultUI : MonoBehaviour
 
         //Trim()은 문자열(string)의 양쪽 끝에 있는 공백(스페이스, 탭, 줄바꿈 등)을 제거하는 메소드
         //저장시 공백이 있을 경우를 대비하여 Trim() 사용함(오류 방지)
-        string playerName = inputPlayerName.text.Trim();
-        if (string.IsNullOrEmpty(playerName)) //입력된 이름이 비어있거나 null인 경우
+        string sPlayerName = inputPlayerName.text.Trim();
+        if (string.IsNullOrEmpty(sPlayerName)) //입력된 이름이 비어있거나 null인 경우
         {
-            playerName = "Player"; //기본값으로 "Player" 설정
+            sPlayerName = "Player"; //기본값으로 "Player" 설정
         }
 
-        RankManager.Instance?.f_AddRank(playerName, nLastScore); //랭크 매니저에 점수와 이름 전달
+        RankManager.Instance?.f_AddRank(sPlayerName, nLastScore); //랭크 매니저에 점수와 이름 전달
     }
 
 }

@@ -16,7 +16,7 @@ public class LoopBackground : BaseLoopBackground //BaseLoopBackground를 상속받아
         if (transform.position.x + fScrollWidth < gReferenceTarget.position.x)
         {
             //화면 왼쪽을 벗어났다면 오른쪽으로 2배 이동시킴
-            transform.position += Vector3.right * fScrollWidth * 2f;
+            transform.position += Vector3.right * fScrollWidth * 2.0f;
 
             //메인 카운터가 활성화된 경우에만 ClearCounterManager에 카운트 증가 요청
             if (isMainCounter && ClearCounterManager.Instance != null)
