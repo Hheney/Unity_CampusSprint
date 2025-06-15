@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour //게임의 전체 흐름을 제어하는 GameManag
 
         int nScore = Mathf.FloorToInt(fCurrentTime * 10.0f); //남은 시간에 따라 점수 계산 (예: 1초당 10점)
         
-        RankManager.Instance?.f_AddRank("Player", nScore); //랭크 매니저에 계산된 점수 전달
+        //RankManager.Instance?.f_AddRank("Player", nScore); //랭크 매니저에 계산된 점수 전달
         GameResultUI.Instance?.f_ShowClearUI(nScore); //게임결과 UI에 계산된 점수 전달
     }
 

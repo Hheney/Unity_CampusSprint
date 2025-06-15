@@ -1,12 +1,15 @@
 /*
- * 점수를 관리하는 랭크매니저
+ * RankManager 스크립트, 랭킹 시스템을 관리하는 클래스
+ * - 점수 등록 기능
+ * - 정렬된 랭킹 리스트 유지 기능
+ * - JSON 파일로 저장/불러오기 기능
  */
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor.Overlays;
 using UnityEngine;
-using System.Security.Cryptography; //AES 암호화를 위해 사용
+using System.Security.Cryptography; //AES 암호화를 위해 사용(TODO)
 
 /*
  * 직렬화(Serialization)
@@ -81,6 +84,9 @@ public class RankManager : MonoBehaviour
         DontDestroyOnLoad(gameObject); //씬이 변경되어도 현재 게임 오브젝트를 유지시키는 메소드
 
         f_LoadRank(); //시작과 동시에 랭크를 로드
+
+        //랭크 저장 경로 출력
+        Debug.Log("[RankManager] JSON 저장 경로: " + Application.persistentDataPath);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
