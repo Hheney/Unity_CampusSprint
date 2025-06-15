@@ -16,17 +16,16 @@ using UnityEngine.SceneManagement;
 /// <summary> 프로젝트 내에서 사용할 씬 이름 열거형(Enum) </summary>
 public enum SceneName
 {
-    TitleScene,
-    //FirstStage,
+    MainMenuScene,
     GameScene
-    //ThirdStage,
-    //ClearScene
 }
 
 /// <summary> 게임의 흐름을 제어하는 FlowManager 클래스 </summary>
 public class FlowManager : MonoBehaviour
 {
     private static FlowManager _instance = null;
+
+    public bool IsRetryMode { get; private set; } = false; //게임 재시작 모드 여부 (기본값: false)
 
     public static FlowManager Instance
     {
@@ -60,6 +59,12 @@ public class FlowManager : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
+    /// <summary> 게임 재시작 모드 설정 메소드 </summary>
+    public void f_SetRetryMode(bool isRetry)
+    {
+        IsRetryMode = isRetry; //게임 재시작 모드 설정
+    }
+
     /// <summary> 지정한 씬으로 전환하는 메소드 </summary>
     public void f_OpenScene(SceneName sceneName)
     {
@@ -78,7 +83,7 @@ public class FlowManager : MonoBehaviour
         else
         {
             Debug.LogWarning($"씬 {sceneName}이 SceneName Enum에 존재하지 않습니다.");
-            return SceneName.TitleScene; //예외 상황 발생 시 기본 타이틀 씬 반환
+            return SceneName.MainMenuScene; //예외 상황 발생 시 기본 씬 반환
         }
     }
 

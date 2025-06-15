@@ -38,8 +38,7 @@ public enum SoundName
     BGM_GameScene,   //배경음악
 
     //효과음
-    SFX_PopSound,    //밤송이 발사 효과음
-    SFX_Crash        //밤송이 충돌 효과음
+    SFX_Clear       //게임 클리어 효과음
 
 }
 //[System.Serializable] : C#의 속성(attribute) / 클래스, 구조체, 필드에 적용가능 / 직렬화를 위해 추가함, 해당 구문을 추가함으로서 Inspector에 표출됨

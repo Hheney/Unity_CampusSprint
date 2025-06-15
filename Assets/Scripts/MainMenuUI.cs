@@ -13,6 +13,14 @@ public class MainMenuUI : MonoBehaviour
 
     void Start()
     {
+        //게임 재시작 모드가 활성화되어 있다면, FlowManager를 통해 게임 씬으로 자동 전환
+        if (FlowManager.Instance != null && FlowManager.Instance.IsRetryMode)
+        {
+            FlowManager.Instance.f_SetRetryMode(false); //게임 재시작 모드 초기화
+            f_OnClickStart(); //자동으로 게임 씬 진입
+            return;
+        }
+
         //버튼 클릭 이벤트 등록
         if (startButton != null)
             startButton.onClick.AddListener(f_OnClickStart); //게임 시작 버튼 클릭 시 f_OnClickStart 메소드 호출

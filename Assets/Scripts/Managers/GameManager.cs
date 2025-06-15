@@ -102,7 +102,14 @@ public class GameManager : MonoBehaviour //게임의 전체 흐름을 제어하는 GameManag
         CurrentState = GameState.GameClear; //게임 상태를 GameClear로 변경
 
         Debug.Log("게임 클리어!");
-        //TODO: ResultUIManager.Instance.ShowClearUI(fCurrentTime);
+        
+        SoundManager.Instance?.f_StopAllBGM(); //모든 BGM 정지
+        SoundManager.Instance?.f_PlaySFX(SoundName.SFX_Clear, 1.0f); //게임 클리어 효과음 재생
+
+        int nScore = Mathf.FloorToInt(fCurrentTime * 10.0f); //남은 시간에 따라 점수 계산 (예: 1초당 10점)
+        
+        RankManager.Instance?.f_AddRank("Player", nScore); //랭크 매니저에 계산된 점수 전달
+        GameResultUI.Instance?.f_ShowClearUI(nScore); //게임결과 UI에 계산된 점수 전달
     }
 
     /// <summary> 제한시간 초과로 게임 오버 처리 </summary>
